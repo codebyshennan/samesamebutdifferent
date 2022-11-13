@@ -1,8 +1,6 @@
 import random
 import warnings
 from io import BytesIO
-import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
-from stability_sdk import client
 from PIL import Image
 from IPython.display import display
 
@@ -37,6 +35,9 @@ import gradio as gr
 from clip_interrogator import Interrogator, Config
 
 ci = Interrogator(Config())
+
+import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
+from stability_sdk import client
 
 stability_api = client.StabilityInference(
     key=os.environ['STABILITY_KEY'],
