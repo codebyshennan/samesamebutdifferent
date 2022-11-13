@@ -1,7 +1,6 @@
 import random
 import warnings
 from io import BytesIO
-import torch
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 from stability_sdk import client
 from PIL import Image
@@ -16,7 +15,7 @@ import os
 
 def setup():
     install_cmds = [
-        ['pip', 'install', 'ftfy', 'gradio', 'regex', 'tqdm', 'stability-sdk',
+        ['pip', 'torch', 'install', 'ftfy', 'gradio', 'regex', 'tqdm', 'stability-sdk',
             'transformers==4.21.2', 'timm', 'fairscale', 'requests'],
         ['pip', 'install', '-e', 'git+https://github.com/openai/CLIP.git@main#egg=clip'],
         ['pip', 'install', '-e',
@@ -35,7 +34,6 @@ sys.path.append('clip-interrogator')
 
 import clip
 import gradio as gr
-import torch
 from clip_interrogator import Interrogator, Config
 
 ci = Interrogator(Config())
