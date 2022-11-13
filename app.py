@@ -1,8 +1,6 @@
 import random
 import warnings
 from io import BytesIO
-from PIL import Image
-from IPython.display import display
 
 import argparse
 import subprocess
@@ -13,7 +11,7 @@ import os
 
 def setup():
     install_cmds = [
-        ['pip', 'install', 'ftfy', 'gradio', 'regex', 'tqdm', 'stability-sdk', 'ipython', 'torch',
+        ['pip', 'install', 'ftfy', 'gradio', 'regex', 'tqdm', 'stability-sdk', 'torch', 'Pillow',
             'transformers==4.21.2', 'timm', 'fairscale', 'requests'],
         ['pip', 'install', '-e', 'git+https://github.com/openai/CLIP.git@main#egg=clip'],
         ['pip', 'install', '-e',
@@ -44,6 +42,7 @@ stability_api = client.StabilityInference(
     verbose=True
 )
 
+from PIL import Image
 
 def inferAndRebuild(image, mode):
     image = image.convert('RGB')
