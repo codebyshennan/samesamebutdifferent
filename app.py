@@ -2,10 +2,8 @@ import random
 import warnings
 from io import BytesIO
 
-import argparse
 import subprocess
 import sys
-import time
 import os
 
 
@@ -28,7 +26,6 @@ sys.path.append('src/clip')
 sys.path.append('clip-interrogator')
 
 
-import clip
 import gradio as gr
 from clip_interrogator import Interrogator, Config
 
