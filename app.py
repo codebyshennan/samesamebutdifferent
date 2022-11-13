@@ -1,16 +1,8 @@
-import random
-import warnings
-from io import BytesIO
-
-import subprocess
-import sys
-import os
-
+import argparse, subprocess, sys, time
 
 def setup():
     install_cmds = [
-        ['pip', 'install', 'ftfy', 'gradio', 'regex', 'tqdm', 'stability-sdk', 'torch', 'Pillow',
-            'transformers==4.21.2', 'timm', 'fairscale', 'requests'],
+        ['pip', 'install', 'ftfy', 'gradio', 'regex', 'tqdm', 'stability-sdk', 'torch', 'Pillow', 'transformers==4.21.2', 'timm', 'fairscale', 'requests'],
         ['pip', 'install', '-e', 'git+https://github.com/openai/CLIP.git@main#egg=clip'],
         ['pip', 'install', '-e',
             'git+https://github.com/pharmapsychotic/BLIP.git@lib#egg=blip'],
@@ -25,7 +17,8 @@ sys.path.append('src/blip')
 sys.path.append('src/clip')
 sys.path.append('clip-interrogator')
 
-
+import clip
+import torch
 import gradio as gr
 from clip_interrogator import Interrogator, Config
 
@@ -33,6 +26,7 @@ ci = Interrogator(Config())
 
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 from stability_sdk import client
+import os
 
 stability_api = client.StabilityInference(
     key=os.environ['STABILITY_KEY'],
@@ -40,6 +34,9 @@ stability_api = client.StabilityInference(
 )
 
 from PIL import Image
+import warnings
+import random
+from io import BytesIO
 
 def inferAndRebuild(image, mode):
     image = image.convert('RGB')
