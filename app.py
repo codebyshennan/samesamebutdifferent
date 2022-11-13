@@ -13,7 +13,7 @@ import os
 
 def setup():
     install_cmds = [
-        ['pip', 'torch', 'install', 'ftfy', 'gradio', 'regex', 'tqdm', 'stability-sdk',
+        ['pip', 'install', 'ftfy', 'gradio', 'regex', 'tqdm', 'stability-sdk', 'ipython', 'torch',
             'transformers==4.21.2', 'timm', 'fairscale', 'requests'],
         ['pip', 'install', '-e', 'git+https://github.com/openai/CLIP.git@main#egg=clip'],
         ['pip', 'install', '-e',
