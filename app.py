@@ -1,10 +1,7 @@
 import random
 import warnings
 from io import BytesIO
-from clip_interrogator import Interrogator, Config
 import torch
-import gradio as gr
-import clip
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 from stability_sdk import client
 from PIL import Image
@@ -14,6 +11,7 @@ import argparse
 import subprocess
 import sys
 import time
+import os
 
 
 def setup():
@@ -28,7 +26,6 @@ def setup():
     for cmd in install_cmds:
         print(subprocess.run(cmd, stdout=subprocess.PIPE).stdout.decode('utf-8'))
 
-
 setup()
 
 sys.path.append('src/blip')
@@ -36,8 +33,12 @@ sys.path.append('src/clip')
 sys.path.append('clip-interrogator')
 
 
-ci = Interrogator(Config())
+import clip
+import gradio as gr
+import torch
+from clip_interrogator import Interrogator, Config
 
+ci = Interrogator(Config())
 
 stability_api = client.StabilityInference(
     key=os.environ['STABILITY_KEY'],
