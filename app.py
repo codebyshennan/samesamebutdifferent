@@ -33,6 +33,8 @@ stability_api = client.StabilityInference(
     verbose=True
 )
 
+import clip
+import torch
 from PIL import Image
 import warnings
 import random
@@ -58,7 +60,7 @@ def inferAndRebuild(image, mode):
     imglist = []
     for resp in answers:
         for artifact in resp.artifacts:
-            if artifact.finish_reason == generate.FILTER:
+            if artifact.finish_reason == generation.FILTER:
                 warnings.warn(
                     "Your request activated the API's safety filters and could not be processed. Please modify the prompt and try again.")
             if artifact.type == generation.ARTIFACT_IMAGE:
