@@ -17,8 +17,8 @@ sys.path.append('src/blip')
 sys.path.append('src/clip')
 sys.path.append('clip-interrogator')
 
-# import clip
-# import torch
+import clip
+import torch
 import gradio as gr
 from clip_interrogator import Interrogator, Config
 
@@ -84,4 +84,4 @@ io = gr.Interface(
     allow_flagging=False,
 )
 
-io.launch(share=True, debug=True)
+io.launch()
