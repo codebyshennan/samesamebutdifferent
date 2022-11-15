@@ -84,4 +84,4 @@ io = gr.Interface(
     allow_flagging=False,
 )
 
-io.launch()
+io.launch(debug=True)
